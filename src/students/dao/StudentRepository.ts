@@ -10,21 +10,30 @@ export default class StudentRepository{
 
     readAll(): Student[] {
         try {
-            const res = fs.readFileSync(this.filePath, {encoding: 'utf-8'});
-            return JSON.parse(res) as Student[];
-        } catch (err: any) {
-            console.error(`Error -> ${err}`);
+            const data = fs.readFileSync(this.filePath, { encoding: 'utf-8' });
+            const students = JSON.parse(data) as Student[];
+            return students.map(student => {
+                const studentInstance = new Student(student.id, student.name, student.password);
+                studentInstance.scores = new Map(Object.entries(student.scores || {})); // Преобразуем объект обратно в Map
+                return studentInstance;
+            });
+        } catch (err) {
+            console.error(err);
             return [];
         }
     }
 
+
     writeAll(arg: Student[]): boolean {
         try {
-            const data = JSON.stringify(arg, null, 2);
-            fs.writeFileSync(this.filePath, data, {encoding: 'utf-8'});
+            const data = JSON.stringify(arg.map(student => ({
+                ...student,
+                scores: Object.fromEntries(student.scores), // Преобразуем Map в объект
+            })),null,2);
+            fs.writeFileSync(this.filePath, data, { encoding: 'utf-8' });
             return true;
         } catch (err) {
-            console.error(err)
+            console.error(err);
             return false;
         }
     }

@@ -2,11 +2,11 @@ import express, {NextFunction, Request, Response} from 'express';
 import studentRouter from "./routes/studentRouter";
 
 const app = express();
-const PORT = 3000;
+const PORT = 8080;
 
 app.use(express.json());
 
-app.use('/api', studentRouter);
+app.use('', studentRouter);
 
 app.use((err:Error, req:Request, res:Response, next:NextFunction)=>{
     console.log(err.message);

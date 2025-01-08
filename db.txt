@@ -1,11 +1,36 @@
 [
   {
-    "id": 2,
-    "name": "John",
+    "id": 9999,
+    "name": "Peter",
+    "password": "1234",
+    "scores": {}
+  },
+  {
+    "id": 111,
+    "name": "Peter1",
+    "password": "1234",
     "scores": {
-      "math": 90,
-      "eng": 99,
-      "art": 55
+      "Math1": 95,
+      "Math": 95,
+      "History": 40
+    }
+  },
+  {
+    "id": 1122,
+    "name": "Peter1",
+    "password": "1234",
+    "scores": {
+      "Math1": 95,
+      "Math": 95
+    }
+  },
+  {
+    "id": 1,
+    "name": "Mary",
+    "password": "1234",
+    "scores": {
+      "History": 40,
+      "Math": 75
     }
   }
 ]
